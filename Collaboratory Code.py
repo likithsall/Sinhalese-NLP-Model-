@@ -29,7 +29,6 @@ tokenized_datasets = dataset.map(tokenize_function, batched=True)
 train_dataset = tokenized_datasets["train"]
 test_dataset = tokenized_datasets["test"]
 
-# Set up the training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     evaluation_strategy="epoch",
@@ -44,7 +43,6 @@ training_args = TrainingArguments(
     logging_dir='./logs',
 )
 
-# Initialize the Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -52,8 +50,6 @@ trainer = Trainer(
     eval_dataset=test_dataset,
 )
 
-# Train the model
 trainer.train()
 
-# Save the model
 trainer.save_model("sinhala_model")
